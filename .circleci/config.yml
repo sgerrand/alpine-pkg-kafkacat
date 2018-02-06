@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Create Docker volumes
+          command: |
+            docker create --name input --volume /home/builder/package alpine /bin/true
+            docker create --name output --volume /packages alpine /bin/true
+            docker cp ./APKBUILD input:/home/builder/package/
+      - run:
+          name: Build packages
+          command: |
+            docker run --env RSA_PRIVATE_KEY="$RSA_PRIVATE_KEY" --env RSA_PRIVATE_KEY_NAME="sgerrand.rsa" \
+                       --volumes-from input --volumes-from output sgerrand/alpine-abuild
+      - run:
+          name: Extract packages
+          command: |
+            mkdir -p packages
+            docker cp output:/packages/builder packages/
+      - run:
+          name: Test installing packages
+          command: |
+            wget -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+            apk add --no-cache --no-progress --upgrade ./packages/builder/x86_64/kafkacat-*.apk
+      - run:
+          name: Test executable
+          command: |
+             kafkacat -V
+      - run:
+          name: Remove Docker volumes
+          command: |
+            docker rm input
+            docker rm output
+          when: always
+      - store_artifacts:
+          destination: pkgs
+          path: packages
+      - persist_to_workspace:
+          root: .
+          paths:
+            - packages
+    working_directory: ~/alpine-pkg-kafkacat
