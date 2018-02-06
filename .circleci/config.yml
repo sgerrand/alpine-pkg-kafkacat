@@ -45,3 +45,56 @@ jobs:
           paths:
             - packages
     working_directory: ~/alpine-pkg-kafkacat
+  release-master:
+    docker:
+      - image: golang:alpine
+    steps:
+      - attach_workspace:
+          at: .
+      - run: apk add --no-cache --no-progress git
+      - run: go get github.com/tcnksm/ghr
+      - run:
+          name: Release packages
+          command: |
+            ghr -u sgerrand -r $CIRCLE_PROJECT_REPONAME -prerelease -delete unreleased packages
+            ghr -u sgerrand -r $CIRCLE_PROJECT_REPONAME -prerelease unreleased packages/builder/x86_64
+    working_directory: ~/alpine-pkg-kafkacat
+  release-tag:
+    docker:
+      - image: golang:alpine
+    steps:
+      - attach_workspace:
+          at: .
+      - run: apk add --no-cache --no-progress git
+      - run: go get github.com/tcnksm/ghr
+      - run:
+          name: Release packages
+          command: |
+            ghr -u sgerrand -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG packages
+            ghr -u sgerrand -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG packages/builder/x86_64
+    working_directory: ~/alpine-pkg-kafkacat
+
+workflows:
+  version: 2
+  build-test-release:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - release-master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+      - release-tag:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /[0-9]+(\.[0-9]+){1,2}(\-r\d+)?$/
