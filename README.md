@@ -1,6 +1,6 @@
 # alpine-pkg-kafkacat
 
-[![CircleCI](https://img.shields.io/circleci/project/sgerrand/alpine-pkg-kafkacat/master.svg)](https://circleci.com/gh/sgerrand/alpine-pkg-kafkacat)
+[![CircleCI](https://circleci.com/gh/sgerrand/alpine-pkg-kafkacat.svg?style=svg)](https://circleci.com/gh/sgerrand/alpine-pkg-kafkacat)
 
 This is [Kafkacat][kafkacat] as an Alpine Linux package.
 
