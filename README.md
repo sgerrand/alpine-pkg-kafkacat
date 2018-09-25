@@ -11,12 +11,9 @@ download links.
 
 ## Installing
 
-The current installation method for these packages is to pull them in using
-`wget` or `curl` and install the local file with `apk`:
+The current installation method for this packages is to install it with `apk`:
 
-    apk --no-cache add ca-certificates wget
     wget --quiet --output-document=/etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-    wget https://github.com/sgerrand/alpine-pkg-kafkacat/releases/download/1.3.1-r0/kafkacat-1.3.1-r0.apk
-    apk add --no-cache kafkacat-1.3.1-r0.apk
+    apk --no-cache --no-progress --repository https://apkproxy.herokuapp.com/sgerrand/alpine-pkg-kafkacat add kafkacat=1.3.1-r0
 
 [kafkacat]: https://github.com/edenhill/kafkacat
