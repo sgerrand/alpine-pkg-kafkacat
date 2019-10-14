@@ -1,7 +1,7 @@
 # Contributor: Sasha Gerrand <alpine-pkgs@sgerrand.com>
 # Maintainer: Sasha Gerrand <alpine-pkgs@sgerrand.com>
 pkgname=kafkacat
-pkgver=1.4.0
+pkgver=1.5.0
 pkgrel=0
 pkgdesc="Generic command line non-JVM Apache Kafka producer and consumer"
 url="https://github.com/edenhill/kafkacat"
@@ -42,4 +42,4 @@ doc() {
 	default_doc
 }
 
-sha512sums="c4607ae16b693fa60ba51dec3ecd527197de56d91c7a2a6397d9f56af6db41bee9bf702943fb56f4ce7d6b996cd7eb7d86881b8a5002f3b450fa6f7485854690  kafkacat-1.4.0.tar.gz"
+sha512sums="57f75b26ef32df244043fa9fc17dc2d6fd93daeea4bc389aa78356ea6e45dea780ff9c3462ed27d2a7798560a21eef04f098bf7766c7305bcee4573f557651ad  kafkacat-1.5.0.tar.gz"
