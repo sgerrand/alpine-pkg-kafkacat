@@ -45,7 +45,7 @@ jobs:
           paths:
             - packages
     working_directory: ~/alpine-pkg-kafkacat
-  release-master:
+  release-main:
     docker:
       - image: golang:alpine
     steps:
@@ -82,12 +82,12 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - release-master:
+      - release-main:
           requires:
             - build
           filters:
             branches:
-              only: master
+              only: main
             tags:
               ignore: /.*/
       - release-tag:
