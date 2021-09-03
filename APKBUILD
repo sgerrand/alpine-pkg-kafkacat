@@ -18,12 +18,8 @@ builddir="$srcdir/kcat-$pkgver"
 build() {
 	cd "$builddir"
 	./configure \
-		--build=$CBUILD \
-		--host=$CHOST \
 		--prefix=/usr \
-		--sysconfdir=/etc \
-		--mandir=/usr/share/man \
-		--localstatedir=/var
+		--mandir=/usr/share/man
 	make
 }
 
