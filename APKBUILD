@@ -2,7 +2,7 @@
 # Maintainer: Sasha Gerrand <alpine-pkgs@sgerrand.com>
 pkgname=kafkacat
 pkgver=1.6.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Generic command line non-JVM Apache Kafka producer and consumer"
 url="https://github.com/edenhill/kafkacat"
 arch="all"
