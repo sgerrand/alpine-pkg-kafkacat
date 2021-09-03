@@ -19,7 +19,8 @@ build() {
 	cd "$builddir"
 	./configure \
 		--prefix=/usr \
-		--mandir=/usr/share/man
+		--mandir=/usr/share/man \
+		--enable-json
 	make
 }
 
