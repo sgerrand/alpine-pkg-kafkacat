@@ -1,22 +1,14 @@
 # alpine-pkg-kafkacat
 
-[![CircleCI](https://circleci.com/gh/sgerrand/alpine-pkg-kafkacat.svg?style=svg)](https://circleci.com/gh/sgerrand/alpine-pkg-kafkacat)
+:warning: **Deprecated** :warning:
 
-This is [Kafkacat][kafkacat] as an Alpine Linux package.
+[As of
+2019-10-01](https://github.com/alpinelinux/aports/commit/8573d2da9594df6a393c1035ff54ac64a19bd35d),
+the `kcat` (formerly known as `kafkacat`) package can and should be downloaded and installed from Alpine
+Linux's community repository.
 
-## Releases
+---
 
-See the [releases page](https://github.com/sgerrand/alpine-pkg-kafkacat/releases) for the latest
-download links.
-
-## Installing
-
-The current installation method for these packages is to pull them in using
-`wget` or `curl` and install the local file with `apk`:
-
-    apk --no-cache add ca-certificates wget
-    wget --quiet --output-document=/etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-    wget https://github.com/sgerrand/alpine-pkg-kafkacat/releases/download/1.6.0-r0/kafkacat-1.6.0-r0.apk
-    apk add --no-cache kafkacat-1.6.0-r0.apk
+This was [Kafkacat][kafkacat] as an Alpine Linux package.
 
 [kafkacat]: https://github.com/edenhill/kafkacat
